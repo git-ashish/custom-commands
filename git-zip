@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Check if params are sufficient enough to go ahead.
+outputPath=$1
+branchName=$2
+
+test -z "$branchName" && echo "ERROR: Please provide the branch you want to export as zip." 1>&2 && exit 1
+test -z "$outputPath" && echo "ERROR: Please provide the name of output zip file with its output path." 1>&2 && exit 1
+
+
+echo "Zipping branch $branchName ..."
+
+# Export branch as zip
+git archive --format zip --output "$outputPath" "$branchName"
